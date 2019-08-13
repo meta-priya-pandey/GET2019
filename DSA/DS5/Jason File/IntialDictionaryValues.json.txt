@@ -1,0 +1,7 @@
+{
+   "7": "practice",
+   "2": "Knight",
+   "10": "answer",
+   "1": "right",
+   "4": "shocked",
+}
