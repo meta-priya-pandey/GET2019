@@ -1,0 +1,15 @@
+id,name,price,quantity,is_active,description,product_image,added_on_date
+1,earphones,1500,105,0,"jbl earphones",...,2018-01-01
+2,headphones,1600,105,1,"bose headphones",...,2019-01-23
+3,heels,700,110,1,"black heels",...,2019-05-01
+4,shoes,1000,104,0,"adidas shoes",...,2019-07-07
+5,"mobile cover",1200,105,1,"mi anti shock mobile cover",...,2018-11-20
+6,watch,3000,100,0,"fossils watch",...,2018-07-29
+7,"toy laptop",1200,105,1,"kids toy laptop",...,2019-01-30
+8,"toy cycle",1400,105,1,"kids 4 wheels cycle",...,2019-07-01
+9,tshirt,500,110,1,"roadster tshirt",...,2019-01-21
+10,suit,600,105,1,"manyavar suit",...,2019-05-01
+11,bags,1000,105,1,"american tourister",...,2018-12-05
+12,notpads,50,110,1,"shree notepads",...,2018-12-01
+13,pens,10,120,1,"use and throw",...,2019-08-01
+14,marker,20,100,0,"red glass marker",...,2018-12-01
