@@ -1,0 +1,11 @@
+id,name,parent
+9,accessories,"Top Category"
+1,clothing,"Top Category"
+3,electronics,"Top Category"
+4,footwears,"Top Category"
+10,"kids toys","Top Category"
+2,stationary,"Top Category"
+5,"clothing men",clothing
+6,"clothing women",clothing
+7,"footwear men",footwears
+8,"footwear women",footwears
