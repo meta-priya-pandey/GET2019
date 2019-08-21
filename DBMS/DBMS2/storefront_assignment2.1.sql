@@ -8,7 +8,8 @@ name varchar(50) not null,
 price float not null,
 quantity int not null,
 is_active bool default true,
-description varchar(200)
+description varchar(200),
+product_image BLOB
 );
 
 DROP TABLE product;
@@ -19,11 +20,11 @@ name varchar(50) not null,
 price float not null,
 quantity int not null,
 is_active bool default true,
-added_on_date DATE not null)
-;
+added_on_date DATE not null,
+product_image BLOB,
+description varchar(200)
+);
 
-ALTER TABLE product
-ADD COLUMN product_image BLOB;
 
 CREATE TABLE category(
 id int not null PRIMARY KEY,
@@ -31,7 +32,7 @@ name varchar(50) not null,
 root int
 );
 
-CREATE TABLE sub_category(
+CREATE TABLE product_categorised(
 productId int not null,
 categoryId int not null,
 primary key(productId, categoryId),
@@ -76,7 +77,6 @@ productId int not null,
 shipping_add_id int not null,
 order_quantity int not null,
 orderStatus varchar(20) not null,
-primary key(orderId, productId),
 foreign key(orderId) references Orders(orderId),
 foreign key(productId) references Product(id),
 foreign key(shipping_add_id) references address(addressId)
