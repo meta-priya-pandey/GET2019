@@ -1,11 +1,11 @@
 orderId,productId,product_name,order_quantity,total_price,user_name,email,order_placing_date,orderStatus
-325,5,"mobile cover",1,1200,priya,priya@gmail.com,2019-08-17,"order placed"
-400,8,"toy cycle",1,1400,naman,naman@gmail.com,2019-08-17,shipped
-324,2,headphones,1,1600,priya,priya@gmail.com,2019-08-17,"order placed"
-365,7,"toy laptop",1,1200,kp,kp@gmail.com,2019-08-17,shipped
-295,13,pens,1,10,jyoti,jyoti@gmail.com,2019-08-17,shipped
-322,5,"mobile cover",1,1200,neha,neha@gmail.com,2019-08-17,"order placed"
-355,5,"mobile cover",1,1200,nisha,nisha@gmail.com,2019-08-17,"order placed"
-450,12,notpads,2,100,vinod,vinod@gmail.com,2019-08-17,shipped
-253,3,heels,1,700,nisha,nisha@gmail.com,2019-08-17,shipped
-310,10,suit,2,1200,vinod,vinod@gmail.com,2019-08-17,"order placed"
+295,13,pens,1,10,jyoti,jyoti@gmail.com,2019-08-21,shipped
+322,5,"mobile cover",1,1200,neha,neha@gmail.com,2019-08-21,"order placed"
+355,5,"mobile cover",1,1200,nisha,nisha@gmail.com,2019-08-21,"order placed"
+450,12,notpads,2,100,vinod,vinod@gmail.com,2019-08-21,shipped
+253,3,heels,1,700,nisha,nisha@gmail.com,2019-08-21,shipped
+310,10,suit,2,1200,vinod,vinod@gmail.com,2019-08-21,"awaiting shipping"
+325,5,"mobile cover",1,1200,priya,priya@gmail.com,2019-08-21,"awaiting shipping"
+400,8,"toy cycle",1,1400,naman,naman@gmail.com,2019-08-21,shipped
+324,2,headphones,1,1600,priya,priya@gmail.com,2019-08-21,"order placed"
+365,7,"toy laptop",1,1200,kp,kp@gmail.com,2019-08-21,shipped

@@ -2,8 +2,8 @@ USE storefrontdb;
 
 #2.1 Display the list of products (Id, Title, Count of Categories) which fall in more than one Categories.
 SELECT p.id, p.name, COUNT(*) AS category_count
-FROM product p INNER JOIN sub_category sc ON p.id = sc.productId
-GROUP BY sc.productId
+FROM product p INNER JOIN product_categorised pc ON p.id = pc.productId
+GROUP BY pc.productId
 HAVING category_count > 1;
 
 #2.2 Display Count of products as per price range.
@@ -18,8 +18,8 @@ GROUP BY pr.price_range;
 
 #2.3 Display the Categories along with number of products under each category.
 SELECT c.id,c.name,COUNT(*) AS product_count
-FROM category c INNER JOIN sub_category sc ON c.id=sc.categoryId
-GROUP BY sc.categoryId;
+FROM category c INNER JOIN product_categorised pc ON c.id=pc.categoryId
+GROUP BY pc.categoryId;
 
 #3.1 Display Shopper’s information along with number of orders he/she placed during last 30 days.
 SELECT u.id, u.name, COUNT(*) AS num_of_order
@@ -63,7 +63,7 @@ SELECT * FROM product;
 
 #3.6 Given a category search keyword, display all the Products present in this category/categories. 
 SELECT p.id, p.name AS product_name, c.name AS category_title
-FROM Product p INNER JOIN sub_category sc ON p.id=sc.productId 
+FROM Product p INNER JOIN product_categorised sc ON p.id=sc.productId 
      INNER JOIN category c ON sc.categoryId=c.id
 WHERE c.name IN('electronics','stationary')
 ;
@@ -71,31 +71,32 @@ WHERE c.name IN('electronics','stationary')
 #3.7 Display top 10 Items which were cancelled most.
 SELECT p.id,p.name,COUNT(*) AS cancelled_count
 FROM product p INNER JOIN order_product op ON p.id=op.productId
-WHERE op.orderStatus IN('cancelled')
+WHERE op.orderStatus IN('canceled')
 GROUP BY p.id
 ORDER BY cancelled_count DESC
 LIMIT 100;
 
 #4 Consider a form where providing a Zip Code populates associated City and State.
-CREATE TABLE Zipcode(
-zipcode INT NOT NULL,
+CREATE TABLE zipcode(
+pincode INT NOT NULL,
 city VARCHAR(100) NOT NULL,
 state VARCHAR(100) NOT NULL,
-PRIMARY KEY(zipcode)
+PRIMARY KEY(pincode)
 );
 
-INSERT INTO Zipcode(zipcode, city, state)
+INSERT INTO Zipcode(pincode, city, state)
 values(302012, 'jaipur', 'rajasthan'),
 	  (302022, 'jaipur','rajasthan'),
       (302212, 'churu', 'rajasthan'),
       (202012,'kanpur', 'up'),
+      (602012, 'jodhpur','rajasthan'),
       (206012, 'lucknow', 'up'),
       (201812, 'chittorgarh', 'rajasthan'),
       (202245, 'jaipur', 'rajasthan'),
       (805012, 'kolkata',  'west bengal')
       ;
   
-SELECT zipcode,city,state
+SELECT pincode,city,state
 FROM Zipcode
 ORDER BY state,city;
 
