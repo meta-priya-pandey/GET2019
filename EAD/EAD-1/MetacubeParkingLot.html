@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Metacube Parking System</title>
+</head>
+<style>
+	td {
+		text-align: left;
+	}
+</style>
+<script type="text/javascript">
+	var regexOnlyAlphabets = /^[a-z ]+$/i;
+	var regexForEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	var lstEmployees = [];
+	var empId = 1000;
+	var employee = {};
+	var regexOnlyNumbers = /^\d{8}$/;
+	var regexForVehicleNumber = /^[A-Z]{2}\s[0-9]{2}\s[A-Z]{2}\s[0-9]{4}$/;
+	var passPrice = { 'Cycle': { 'Daily': 5, 'Monthly': 100, 'Yearly': 500 }, 'MotorCycle': { 'Daily': 10, 'Monthly': 200, 'Yearly': 1000 }, 'Four Wheelers': { 'Daily': 20, 'Monthly': 500, 'Yearly': 3500 } };
+	var passNumber = 100;
+	function registerEmployee() {
+		if (validateEmpForm()) {
+			if (lstEmployees.length > 0) {
+				empId = parseInt(lstEmployees[lstEmployees.length - 1].empId.split('/')[1]);
+			}
+			employee.empId = 'E19/' + ++empId;
+			lstEmployees.push(employee);
+			document.getElementById("idFrmEmp").style.display = "none";
+			document.getElementById("idFrmVeh").style.display = "";
+			document.getElementById("idGeneratedEmpId").innerHTML = employee.empId;
+		}
+	}
+
+	function registerVehicle() {
+		if (validateVehForm()) {
+			document.getElementById("idFrmVeh").style.display = "none";
+			document.getElementById("idFrmGetPass").style.display = "";
+		}
+	}
+
+	function generatePass() {
+		var ddSelVeh = document.getElementById("idDropDownSelVeh");
+		var ddSelPass = document.getElementById("idDropDownSelPass");
+		if (validateGetPassForm()) {
+			document.getElementById("idPassSuccessMess").innerHTML = "<center>Your pass for Vehicle Type: <b>" + ddSelVeh.value + "</b> for <b>" + ddSelPass.value + " is <b>" + passPrice[ddSelVeh.value][ddSelPass.value] + " INR</b> generated successfully with Pass#<b>" + document.getElementById("idGeneratedEmpId").innerHTML + "/" + ++passNumber + "</b></center>"
+			document.getElementById("idDivSuccessMess").style.display = "";
+			document.getElementById("idDivGenPass").style.display = "none";
+		}
+		return false;
+	}
+
+	function validateEmpForm() {
+		var txtFullName = document.getElementById("idTxtFullName");
+		var txtEmail = document.getElementById("idTxtEmail");
+		var txtEmpPswd = document.getElementById("idPwdEmpPwd");
+		var txtEmpCnfPswd = document.getElementById("idPwdCnfEmpPwd");
+		var rdoGenderF = document.getElementById("idRdoGenderF");
+		var rdoGenderM = document.getElementById("idRdoGenderM");
+		var txtContact = document.getElementById("idTxtContact");
+
+		if (txtFullName.value.trim().length == 0) {
+			txtFullName.focus();
+			alert("Please enter Full Name");
+			return false;
+		}
+		else if (txtFullName.value.trim().length < 2) {
+			txtFullName.focus();
+			alert("Please enter atleast two characters for full name");
+			return false;
+		}
+		else if (!regexOnlyAlphabets.test(txtFullName.value)) {
+			txtFullName.focus();
+			alert("Only Alphabets are allowed in Full Name");
+			return false;
+		}
+		else if (rdoGenderM.checked == false && rdoGenderF.checked == false) {
+			alert("Please choose Gender");
+			return false;
+		}
+		else if (txtEmail.value.trim().length == 0) {
+			txtEmail.focus();
+			alert("Please enter Email");
+			return false;
+		}
+		else if (!regexForEmail.test(txtEmail.value)) {
+			txtEmail.focus();
+			alert("Please enter correct email address");
+			return false;
+		}
+		else if (txtEmpPswd.value.trim().length == 0) {
+			txtEmpPswd.focus();
+			alert("Please enter Employee Password");
+			return false;
+		}
+		else if (txtEmpCnfPswd.value.trim().length == 0) {
+			txtEmpCnfPswd.focus();
+			alert("Please confirm Employee Password");
+			return false;
+		}
+		else if (txtEmpCnfPswd.value != txtEmpPswd.value) {
+			txtEmpCnfPswd.focus();
+			alert("Confirm password should match with password field");
+			return false;
+		}
+		else if (txtContact.value.trim().length == 0) {
+			txtContact.focus();
+			alert("Please enter your Contact Number");
+			return false;
+		}
+		else if (!regexOnlyNumbers.test(txtContact.value)) {
+			txtContact.focus();
+			alert("Please enter correct Contact Number");
+			return false;
+		}
+		return true;
+	}
+
+	window.onload = function () {
+		document.getElementById("idFrmVeh").style.display = "none";
+		document.getElementById("idFrmGetPass").style.display = "none";
+		document.getElementById("idDivSuccessMess").style.display = "none";
+	}
+
+	function validateVehForm() {
+		var txtVehName = document.getElementById("idTxtVehName");
+		var txtVehNum = document.getElementById("idTxtVehNum");
+		var txtEmpId = document.getElementById("idTxtEmpId");
+		var ddSelVeh = document.getElementById("idDropDownSelVeh");
+
+		if (txtVehName.value.trim().length == 0) {
+			txtVehName.focus();
+			alert("Please enter Vehicle Name");
+			return false;
+		}
+		else if (ddSelVeh.value == "--select vehicle--") {
+			alert("Please Select Vehicle Type");
+			return false;
+		}
+		else if (txtVehNum.value.trim().length == 0) {
+			txtVehNum.focus();
+			alert("Please enter Vehicle Number");
+			return false;
+		}
+		else if (!regexForVehicleNumber.test(txtVehNum.value)) {
+			txtVehNum.focus();
+			alert("Please Enter correct Vehicle Number");
+			return false;
+		}
+		else if (txtEmpId.value.trim().length == 0) {
+			txtEmpId.focus();
+			alert("Please enter Employee Registered Id");
+			return false;
+		}
+		else if (txtEmpId.value != document.getElementById("idGeneratedEmpId").innerHTML) {
+			txtEmpId.focus();
+			alert("Please enter Employee Registered Id provided to you");
+			return false;
+		}
+		return true;
+	}
+
+	function validateGetPassForm() {
+		var ddSelPass = document.getElementById("idDropDownSelPass");
+		if (ddSelPass.value == "--select pass--") {
+			alert("Please Select Pass Type");
+			return false;
+		}
+		return true;
+	}
+
+</script>
+
+<body background="pinkwatercolordesktopblur.jpg">
+	<h1>
+		<center>
+			<font color="#404040">Metacube Parking System</font>
+		</center>
+	</h1>
+	<br>
+	<br>
+	<form id="idFrmEmp" name="RegForm" method="POST" align="center">
+		<h1>
+			<center>
+				<font color="#990000">Employee Registration Form </font>
+			</center>
+		</h1>
+		<table border='0' width='500px' cellpadding='10' cellspacing='10' align='center'
+			background="pinkwatercolordesktop.jpg">
+			<tr>
+				<td>
+					<b><label for="name">Full Name</label></b>
+				</td>
+				<td>
+					<input id="idTxtFullName" type="text" name="name" placeholder="Full Name" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<b><label for="gender">Gender</label></b>
+				</td>
+				<td>
+					<input id="idRdoGenderM" type="radio" name="genderM" value="male">Male
+					<input id="idRdoGenderF" type="radio" name="genderF" value="female">Female
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<b><label for="mail">Email id</label></b>
+				</td>
+				<td>
+					<input id="idTxtEmail" type="text" name="name" placeholder="Email id" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<b><label for="pwd">Password</label></b>
+				</td>
+				<td>
+					<input id="idPwdEmpPwd" type="password" name="name" placeholder="Password" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<b><label for="confirmPwd">Confirm Password</label></b>
+				</td>
+				<td>
+					<input id="idPwdCnfEmpPwd" type="password" name="name" placeholder="Confirm Password" />
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<b><label for="contact">Contact Number</label></b>
+				</td>
+				<td>
+					<input id="idTxtContact" type="text" name="name" placeholder="Contact Number" />
+				</td>
+			</tr>
+		</table>
+		<button type="submit" name="button" form="register" value="Submit" onClick="registerEmployee();">Submit</button>
+		<input type="reset" name="reset" value="Reset" />
+	</form>
+
+	<form id="idFrmVeh" name="VehicleForm" method="POST" align="center">
+		<h1>
+			<center>
+				<font color="#990000">Vehicle Registration Form </font>
+			</center>
+		</h1>
+		<center>
+			<h3>
+				Thank you for Registration. Your Registered Employee Id is
+			</h3>
+			<h3 id="idGeneratedEmpId">
+			</h3>
+		</center>
+		<table border='0' width='500px' cellpadding='10' cellspacing='1' align='center'
+			background="pinkwatercolordesktop.jpg">
+			<tr>
+				<th>
+					<label for="nameVehicle">Vehicle Name</label>
+				</th>
+				<td>
+					<input id="idTxtVehName" type="text" name="name" placeholder="Vehicle Name" />
+				</td>
+			</tr>
+
+			<tr>
+				<th>
+					<label for="typeVehicle">Vehicle Type</label>
+				</th>
+				<td>
+					<select id="idDropDownSelVeh">
+						<option value="--select vehicle--">--select vehicle--</option>
+						<option value="Cycle">Cycle</option>
+						<option value="MotorCycle">MotorCycle</option>
+						<option value="Four Wheelers">Four Wheelers</option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
+				<th>
+					<label for="vehicleNum">Vehicle Number</label>
+				</th>
+				<td>
+					<input id="idTxtVehNum" type="text" name="vehicleNum" placeholder="Vehicle Number" />
+				</td>
+			</tr>
+
+			<tr>
+				<th>
+					<label for="EmpId">Employee Id</label>
+				</th>
+				<td>
+					<input id="idTxtEmpId" type="text" name="EmpId" placeholder="Registered Employee Id" />
+				</td>
+			</tr>
+
+			<tr>
+				<th>
+					<label for="identification">Identification</label>
+				</th>
+				<td>
+					<textarea id="idTxtIdentification" name="identification" columns="10" rows="10" maxlength="100"
+						placeholder="Specific identification of vehicle like color, model, and many more.."></textarea>
+				</td>
+			</tr>
+		</table>
+		<button id="btnVehSubmit" type="button" name="submit" form="vehicle"
+			onClick="registerVehicle();">Submit</button>
+		<input type="reset" name="reset" value="Reset" />
+	</form>
+	<form id="idFrmGetPass" name="PassForm" method="POST" align="center">
+		<div id="idDivGenPass">
+			<h1>
+				<center>
+					<font color="#990000">Get Pass </font>
+				</center>
+			</h1>
+
+			<label for="getPass">Select Pass Duration</label>
+
+			<select id="idDropDownSelPass">
+				<option value="--select pass--">--select pass--</option>
+				<option value="Daily">Daily</option>
+				<option value="Monthly">Monthly</option>
+				<option value="Yearly">Yearly</option>
+			</select>
+
+			<button id="btnGetPassSubmit" type="button" name="submit" onClick="generatePass();">Submit</button>
+			<input type="reset" name="reset" value="Reset" />
+		</div>
+		<div id="idDivSuccessMess">
+			<h1 id="idPassSuccessMess"></h1>
+		</div>
+	</form>
+</body>
+
+</html>
