@@ -41,7 +41,7 @@
                     <td><label>
                             <font size="5px">Full name :</font>
                         </label></td>
-                    <td><input type="text" name="name" placeholder="Name" pattern="[A-Za-z]" required /></td>
+                    <td><input type="text" name="name" placeholder="Name" pattern="[A-z0-9À-ž\s]){2,}" required /></td>
                 </tr>
                 <tr>
                     <td><label>
@@ -58,8 +58,7 @@
                     <td><label>
                             <font size="5px">Email Id :</font>
                         </label></td>
-                    <td><input type="email" name="mail" placeholder="Email Address"
-                            pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" required />
+                    <td><input type="email" name="mail" placeholder="Email Address" required />
                     </td>
                 </tr>
                 <tr>
@@ -81,11 +80,11 @@
                     <td><label>
                             <font size="5px">Contact Number :</font>
                         </label></td>
-                    <td><input type="tel" name="contact" placeholder="Contact number" pattern="^\d{4}-\d{3}-\d{4}$"
+                    <td><input type="tel" name="contact" placeholder="Contact number" pattern="^\d{4}-\d{3}-\d{3}$"
                             required /></td>
                 </tr>
             </table>
-            <br> <input type="button" value="Register" />
+            <br> <input type="submit" value="Register" />
         </form>
     </div>
     <br>
@@ -101,7 +100,7 @@
                     <td><label>
                             <font size="5px">Name :</font>
                         </label></td>
-                    <td><input type="text" name="name" placeholder="Vehicle Name" pattern="[A-Za-z]" required /></td>
+                    <td><input type="text" name="name" placeholder="Vehicle Name" pattern="[A-Za-z]+" required /></td>
                 </tr>
                 <tr>
                     <td><label>
@@ -110,7 +109,7 @@
                     <td><select name="vehType">
                             <option selected>---Select One Please---</option>
                             <option>Cylce</option>
-                            <option>Motorlcyle</option>
+                            <option>Motorcyle</option>
                             <option>Four Wheelers</option>
                         </select></td>
                 </tr>
@@ -128,7 +127,7 @@
                     <td><textarea name="identification" required> </textarea> </td>
                 </tr>
             </table>
-            <br> <input type="button" value="Register" />
+            <br> <input type="submit" value="Register" />
         </form>
     </div>
     <br>
@@ -140,15 +139,15 @@
             <table>
                 <tr>
                     <td><label><font size="5px">Name :</font></label></td>
-                    <td><input type="text" name="name" /></td>
+                    <td><input type="text" name="name" placeholder="Name" required /></td>
                 </tr>
                 <tr>
                     <td><label><font size="5px">Email :</font></label></td>
-                    <td><input type="email" name="mail" /></td>
+                    <td><input type="email" name="mail" placeholder="Email Address" required /></td>
                 </tr>
                 <tr>
                     <td><label><font size="5px">Subject :</font></label></td>
-                    <td><input type="text" name="subject" /></td>
+                    <td><input type="text" name="subject" placeholder="Subject" required /></td>
                 </tr>
                 <tr>
                     <td><label><font size="5px">Message :</font></label></td>
